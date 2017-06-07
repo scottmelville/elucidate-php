@@ -1,4 +1,5 @@
 <?php
+
 namespace Elucidate;
 
 use Elucidate\Adapter\HttpAdapter;
@@ -14,9 +15,10 @@ class Client
         $this->client = $client;
     }
 
-    public function getContainer($idOrContainer) {
+    public function getContainer($idOrContainer)
+    {
         return Container::fromJson(
-            $this->client->get((string) $idOrContainer)
+            $this->client->get((string) $idOrContainer.'/')
         );
     }
 
@@ -40,8 +42,9 @@ class Client
         if (!$container) {
             throw new AnnotationOrphanException();
         }
+
         return Annotation::fromJson(
-            $this->client->post($container, $annotation)
+            $this->client->post($container.'/', $annotation)
         )->withContainer($container);
     }
 
@@ -51,12 +54,13 @@ class Client
         if (!$container) {
             throw new AnnotationOrphanException();
         }
+
         return Annotation::fromJson(
             $this->client->put($annotation, $annotation)
         )->withContainer($container);
     }
 
-    public function deleteAnnotation(Annotation $annotation) : bool
+    public function deleteAnnotation(Annotation $annotation)
     {
         return $this->client->delete($annotation);
     }

@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Elucidate\Tests\Model;
-
 
 use Elucidate\Model\Container;
 use PHPUnit_Framework_TestCase;
 
 class ContainerTest extends PHPUnit_Framework_TestCase
 {
-
     public function test_can_instantiate()
     {
         new Container('label');
@@ -54,10 +51,9 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('1234', $container['id']);
         $this->assertEquals('Something label', $container['label']);
-        $this->assertContains("http://www.w3.org/ns/anno.jsonld", $container['@context']);
-        $this->assertContains("http://www.w3.org/ns/ldp.jsonld", $container['@context']);
-        $this->assertContains("BasicContainer", $container['type']);
-        $this->assertContains("AnnotationCollection", $container['type']);
+        $this->assertContains('http://www.w3.org/ns/anno.jsonld', $container['@context']);
+        $this->assertContains('http://www.w3.org/ns/ldp.jsonld', $container['@context']);
+        $this->assertContains('BasicContainer', $container['type']);
+        $this->assertContains('AnnotationCollection', $container['type']);
     }
-
 }
